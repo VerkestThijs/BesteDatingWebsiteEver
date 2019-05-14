@@ -6,60 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="CreateProfileJs.js"></script>
-    <link rel="stylesheet" href="CreateProfile.css"/>
+    <link rel="stylesheet" href="CreateProfile.css" />
     <title>Profiel aanmaken</title>
 </head>
 
 <body>
-    <h1> Profiel aanmaken</h1>
+    <header></header>
+    <div class="subheader">
+        <h2> Profiel aanmaken</h2>
+    </div>
+
 
     <div class="Input">
-        <label for="Naam"  >Naam: </label>
+        <label for="Naam">Naam: </label>
         <input type="text" id="Naam" pattern="^[a-zA-Z]*$" class="inputveld">
         <br>
-        <label for="FamNaam" >familienaam: </label>
+        <label for="FamNaam">familienaam: </label>
         <input type="text" id="FamNaam" class="inputveld">
         <br>
-        <label for="GeboorteDatum" >GeboorteDatum: </label>
+        <label for="GeboorteDatum">GeboorteDatum: </label>
         <input type="date" id="GeboorteDatum" class="inputveld">
         <br>
-        <label for="Email" >Email: </label>
+        <label for="Email">Email: </label>
         <input type="email" id="Email" class="inputveld">
         <br>
-        <label for="Nickname"  >Nickname: </label>
+        <label for="Nickname">Nickname: </label>
         <input type="text" id="Nickname" class="inputveld">
         <br>
-        <label for="foto" >Foto: </label>
+        <label for="foto">Foto: </label>
         <input type="text" id="Foto" name="foto" class="inputveld">
         <button type="button" id="FotoUploadButton">uploaden</button>
         <br>
-        <label for="Beroep" >Beroep: </label>
+        <label for="Beroep">Beroep: </label>
         <input type="text" id="Beroep" class="inputveld">
         <br>
-        <label for="RadiobuttonSexe"  >Sexe: </label>
-        <input type="radio" name="Sexe" value="m" checked >man  </input>
-        <input type="radio" name="Sexe" value="v" >vrouw </input>
+        <label for="RadiobuttonSexe">Sexe: </label>
+        <input type="radio" name="Sexe" value="m" checked>man </input>
+        <input type="radio" name="Sexe" value="v">vrouw </input>
         <br>
-        <label for="Haarkleur" >Haarkleur: </label>
+        <label for="Haarkleur">Haarkleur: </label>
         <input type="text" id="Haarkleur" class="inputveld">
         <br>
-        <label for="Oogkleur" >Oogkleur: </label>
+        <label for="Oogkleur">Oogkleur: </label>
         <input type="text" id="Oogkleur" class="inputveld">
         <br>
-        <label for="Grootte" >Grootte: </label>
+        <label for="Grootte">Grootte: </label>
         <input type="text" id="Grootte" class="inputveld">
         <br>
-        <label for="Gewicht"  >Gewicht: </label>
+        <label for="Gewicht">Gewicht: </label>
         <input type="text" id="Gewicht" class="inputveld">
         <br>
-        <label for="Wachtwoord" >Wachtwoord: </label>
+        <label for="Wachtwoord">Wachtwoord: </label>
         <input type="password" id="Wachtwoord" class="inputveld">
         <br>
-        <label for="Sterrenbeeld" >Sterrenbeeld: </label>
+        <label for="Sterrenbeeld">Sterrenbeeld: </label>
         <input type="text" id="Sterrenbeeld" class="inputveld">
     </div>
     <div class="button">
-        <button type="button" id="VerzendKnop">Verzenden</button> 
+        <button type="button" id="VerzendKnop">Verzenden</button>
     </div>
 </body>
 

@@ -14,40 +14,45 @@
     <div id="index">
 
 
+        <div class="dropdown">
 
-        <main>
-            <div class="dropdown">
-                <div id="myDropdown" class="dropdown-content">
-                    <form>
-                        <p>Nickname </p>
-                        <input id="frmNickname">
-                        <p>Wachtwoord </p>
-                        <input id="frmWachtwoord"> <br>
-                        <button id="loginbtn" onclick="fnLogin()">Log in</button>
-                    </form>
-                </div>
+            <div id="myDropdown" class="dropdown-content">
+                <form>
+                    <div id="labels" class="dropdown-con">
+                        <p>username </p>
+                        <div id="input" class="dropdown-con">
+                            <input id="frmNickname" class="dropdown-con" />
+                        </div>
+                        <p>wachtwoord </p>
+                    </div>
+                    <div id="input" class="dropdown-con">
+                        <input id="frmWachtwoord" class="dropdown-con" />
+                    </div>
+                    <button id="loginbtn" onclick="fnLogin()">Log in</button>
+                </form>
             </div>
+        </div>
 
-            <div class="main">
-                <div class="bg">
-                    <h1>AT. FIRST. SIGHT.</h1>
-                    <button onclick="fnDropDown()" name="inloggen" class="dropbtn">Log In</button>
-                    <a href="./inschrijven.html" class="inschrijven">INSCHRIJVEN</a>
-                </div>
-                <div class="content wrapper">
-                    <h3> Deze nacht</h3>
-                    <p>een donkere maar heldere nacht
-                        vol passie en genot
-                        zachtheid, warmte en liefde
-                        niet denkend aan ons lot
-                    </p>
-                    <p> handen en lippen
-                        strelen elkaar zacht
-                        niemand wist en zou nooit weten
-                        wat deze nacht ons bracht
-                    </p>
-                </div>
+        <div class="main">
+            <div class="bg">
+                <h1>AT. FIRST. SIGHT.</h1>
+                <button onclick="fnDropDown()" name="inloggen" class="dropbtn">Log In</button>
+                <a href="./inschrijven.html" class="inschrijven">INSCHRIJVEN</a>
             </div>
+            <div class="content wrapper">
+                <h3> Deze nacht</h3>
+                <p>een donkere maar heldere nacht
+                    vol passie en genot
+                    zachtheid, warmte en liefde
+                    niet denkend aan ons lot
+                </p>
+                <p> handen en lippen
+                    strelen elkaar zacht
+                    niemand wist en zou nooit weten
+                    wat deze nacht ons bracht
+                </p>
+            </div>
+        </div>
 
         </main>
 
