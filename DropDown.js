@@ -53,7 +53,7 @@ function fnLogin() {
         .then(function (response) { return response.json(); })
         .then(function (data) { 
             if (data.message == "Authorized"){
-                localStorage.id = data.id;
+                sessionStorage.id = data.id;
                 window.open("test.html" , "_self");
             }
             else if (data.message == "Unauthorized"){

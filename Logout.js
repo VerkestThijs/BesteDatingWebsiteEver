@@ -1,8 +1,8 @@
 window.onload = function(){
-    let userId = localStorage.id;
+    let userId = sessionStorage.id;
     document.getElementById("testInput").value = userId;
 }
 function fnLogOut(){
-    localStorage.removeItem("id");
+    sessionStorage.clear();
     window.open("DropDown.html","_self");
 }
