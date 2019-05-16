@@ -9,10 +9,10 @@ window.onload = function () {
     
     //localstorage controle + instellen
     if (localStorage.nickname){
-        document.getElementById("input10_1").value = localStorage.nickname;
+        document.getElementById("frmNickname").value = localStorage.nickname;
     }
     else{
-        document.getElementById('knop10').addEventListener('click', fnLocalStorage);
+        document.getElementById('dropbtn').addEventListener('click', fnLocalStorage);
     }
 }
 
@@ -21,7 +21,7 @@ toggle between hiding and showing the dropdown content */
 function fnDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
     document.querySelector('.main').classList.toggle("blur");
-    document.getElementById("input10_1").focus();
+    document.getElementById("frmNickname").focus();
 
     window.addEventListener('keyup', function(event){
         if (event.keyCode === 13){
@@ -32,8 +32,8 @@ function fnDropDown() {
 }
 
 function fnLogin() {
-    let nickname = document.getElementById("input10_1").value;
-    let wachtwoord = document.getElementById("input10_2").value;
+    let nickname = document.getElementById("frmNickname").value;
+    let wachtwoord = document.getElementById("frmWachtwoord").value;
 
     let url=rooturl+'/profiel/authenticate.php';
     //let url = 'http://scrumserver.tenobe.org/scrum/api/profiel/authenticate.php';
@@ -55,19 +55,20 @@ function fnLogin() {
                 //id doorgeven aan verdere pagina's
                 sessionStorage.id = data.id;
                 //volgende window openen. vervang 'test' door correcte url
-                window.open("test.html" , "_self");
+                window.open("zoeken.html" , "_self");
             }
             else if (data.message == "Unauthorized"){
                 alert("nickname of wachtwoord is foutief");
-            }
+                }
             })
-            
         .catch(function (error) { console.log(error); });
 }
 //dropdown sluiten indien ernaast geklikt wordt
 window.onclick = function (event) {
-    if ((!event.target.matches('.dropbtn'))) {
-        if ((!event.target.matches('.dropdown-con'))) {
+    if ((!event.target.matches('#dropbtn'))) {
+        console.log("button");
+        if ((!event.target.matches('#input'))) {
+            console.log("input");
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
             for (i = 0; i < dropdowns.length; i++) {
@@ -88,6 +89,6 @@ window.onclick = function (event) {
 }
 //nickname opslaan in local storage
 function fnLocalStorage(){
-    localStorage.nickname = document.getElementById('input10_1').value;
+    localStorage.nickname = document.getElementById('frmNickname').value;
 }
 
