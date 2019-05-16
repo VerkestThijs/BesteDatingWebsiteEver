@@ -44,11 +44,21 @@ function Verstuur() {
         .then(function (data) { console.log(data); })
         .catch(function (error) { console.log(error); });
 
-        var jsonobj = JSON.stringify(CreerJson())
-        console.log(jsonobj);
+        // var jsonobj = JSON.stringify(CreerJson())
+        // console.log(jsonobj);
 
 }
 
+function validatie(Naam,Familienaam,Email,Nickname,Foto,Beroep,Haarkleur,Oogkleur,wachtwoord){
+    if ( Naam==""  || Familienaam =="" || Email=="" || Nickname=="" || Foto==""|| Beroep=="" 
+    || Haarkleur =="" ||  Oogkleur =="" || wachtwoord ==" ") {
+        return false
+    }
+    else {
+        return true
+    }
+
+}
 
 
 
@@ -69,35 +79,64 @@ function CreerJson() {
     let Gewicht = document.getElementById("Gewicht").value
     let Wachtwoord = document.getElementById("Wachtwoord").value
     let Sterrenbeeld = document.getElementById("Sterrenbeeld").value
-    let base64string = btoa(Foto);// dit creert een base 64 string om mee te geven in json
+    
 
+    let geslaagdevalidatie =validatie(Naam, Famielienaam,Email,Nickname,Foto,Beroep,Haarkleur,Oogkleur,Wachtwoord)
 
+    if (geslaagdevalidatie) {
 
-
-
-
-
-    data = {
+        data = {
         
-        familienaam: Famielienaam,
-        voornaam: Naam,
-        geboortedatum: Geboortedatum,
-        email: Email,
-        nickname: Nickname,
-        foto: base64string,
-        beroep: Beroep,
-        sexe: Sexe,
-        haarkleur: Haarkleur,
-        oogkleur: Oogkleur,
-        grootte: Grootte,
-        gewicht: Gewicht,
-        wachtwoord: Wachtwoord,
-        Sterrenbeeld: Sterrenbeeld,
-        lovecoins: String(0)
+            familienaam: Famielienaam,
+            voornaam: Naam,
+            geboortedatum: Geboortedatum,
+            email: Email,
+            nickname: Nickname,
+            foto: Foto,
+            beroep: Beroep,
+            sexe: Sexe,
+            haarkleur: Haarkleur,
+            oogkleur: Oogkleur,
+            grootte: Grootte,
+            gewicht: Gewicht,
+            wachtwoord: Wachtwoord,
+            Sterrenbeeld: Sterrenbeeld,
+            lovecoins: String(0)
+    
+        };
+        
+    
+        alert("data is verstuurd")
+        return data
+        
+    }
+    else{
+        alert("Een van de velden is leeg")
+    }
+ 
 
-    };
 
-    return data
+    // data = {
+        
+    //     familienaam: Famielienaam,
+    //     voornaam: Naam,
+    //     geboortedatum: Geboortedatum,
+    //     email: Email,
+    //     nickname: Nickname,
+    //     foto: base64string,
+    //     beroep: Beroep,
+    //     sexe: Sexe,
+    //     haarkleur: Haarkleur,
+    //     oogkleur: Oogkleur,
+    //     grootte: Grootte,
+    //     gewicht: Gewicht,
+    //     wachtwoord: Wachtwoord,
+    //     Sterrenbeeld: Sterrenbeeld,
+    //     lovecoins: String(0)
+
+    // };
+
+    // return data
 
 
 
