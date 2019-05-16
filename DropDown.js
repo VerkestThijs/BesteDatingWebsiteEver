@@ -14,14 +14,6 @@ window.onload = function () {
     else{
         document.getElementById('knop10').addEventListener('click', fnLocalStorage);
     }
-
-    //inloggen met enter
-    document.getElementById('input10_2').addEventListener('keyup', function(event){
-        if (event.keyCode === 13){
-            event.preventDefault;
-            fnLogin();
-        }
-    })
 }
 
 /* When the user clicks on the button,
@@ -30,6 +22,13 @@ function fnDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
     document.querySelector('.main').classList.toggle("blur");
     document.getElementById("input10_1").focus();
+
+    window.addEventListener('keyup', function(event){
+        if (event.keyCode === 13){
+            event.preventDefault;
+            fnLogin();
+        }
+    })
 }
 
 function fnLogin() {
@@ -53,7 +52,9 @@ function fnLogin() {
         .then(function (response) { return response.json(); })
         .then(function (data) { 
             if (data.message == "Authorized"){
+                //id doorgeven aan verdere pagina's
                 sessionStorage.id = data.id;
+                //volgende window openen. vervang 'test' door correcte url
                 window.open("test.html" , "_self");
             }
             else if (data.message == "Unauthorized"){
@@ -63,7 +64,7 @@ function fnLogin() {
             
         .catch(function (error) { console.log(error); });
 }
-
+//dropdown sluiten indien ernaast geklikt wordt
 window.onclick = function (event) {
     if ((!event.target.matches('.dropbtn'))) {
         if ((!event.target.matches('.dropdown-con'))) {
@@ -76,17 +77,17 @@ window.onclick = function (event) {
                 }
             }
             document.querySelector('.main').classList.remove("blur");
+            window.removeEventListener('keyup', function(event){
+                if (event.keyCode === 13){
+                    event.preventDefault;
+                    fnLogin();
+                }
+            }); 
         }
     }
 }
-
+//nickname opslaan in local storage
 function fnLocalStorage(){
     localStorage.nickname = document.getElementById('input10_1').value;
 }
 
-//belangrijk voor globale javascript (id-veiligheid)
-/*
-window.onunload()=function(){
-    alert("bye!");
-    localStorage.id.remove;
-}*/
