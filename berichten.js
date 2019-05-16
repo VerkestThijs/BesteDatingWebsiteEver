@@ -1,4 +1,3 @@
-
 var rooturl = "https://scrumserver.tenobe.org/scrum/api";
 var chatPartners = [];
 var chatMessages = {};
@@ -21,12 +20,13 @@ function extractChatPartners(messages, userId) {
     let partners = [];
     //maak lijst van chatpartners + laatste boodschap
     for (var i = 0; i < messages.length; i++) {
-        if (messages[i][0].benIkZender == "1") {
-            partners.push([messages[i][0].naarId, messages[i][messages[i].length - 1].bericht]);
+        if (messages[i][0].benIkZender == "1") 
+        {
+            partners.push([messages[i][0].naarId, messages[i][messages[i].length-1].bericht]);
         }
         else {
-            partners.push([messages[i][0].vanId, messages[i][messages[i].length - 1].bericht]);
-        }
+            partners.push([messages[i][0].vanId, messages[i][messages[i].length-1].bericht]);
+        } 
     }
     console.log(partners);
 
@@ -48,11 +48,17 @@ function addChatPartner(partner, userId) {
             //create HTML
             var ePartnerList = document.getElementById('containerGesprekspartners');
             var ePartner = document.createElement('div');
-            console.log(userId);
             var eImg = document.createElement('img');
-            var eNickname = document.createTextNode(partnerProfiel.nickname);
-            var eBerichttekst = document.createTextNode(partner[1]);  //chatmessages: komen eerste x aantal karakters van bericht
-            ePartner.id = "partner" + partner;
+            var eNickname = document.createElement('p');
+            eNickname.innerHTML = partnerProfiel.nickname;
+            eNickname.className = "nicknameGesprekspartner";
+            var eBerichttekst = document.createElement('p');
+            eBerichttekst.innerHTML = partner[1];
+            eBerichttekst.className = "boodschap";
+            if (eBerichttekst.innerHTML.length > 15) {
+                eBerichttekst.innerHTML = eBerichttekst.innerHTML.substring(0,15) + " ...";
+            }
+            ePartner.id = "partner" + partnerProfiel.id;
             ePartner.className = "gesprekspartner";
             eImg.src = rootImg + partnerProfiel.foto;
             eImg.alt = partnerProfiel.nickname;
@@ -70,36 +76,62 @@ function addChatPartner(partner, userId) {
                     .then(function (resp) { return resp.json(); })
                     .then(function (msgs) {
                         console.log(msgs);
+                        console.log(userId);
+                        var eMain = document.getElementsByTagName('main')[0];
                         var eMsgList = document.getElementById('containerBerichten');
-                        var eBericht = document.createElement('div');
+                        eMsgList.innerHTML = "";
+                        var eHeading = document.createElement('h2');
+                        eHeading.innerHTML = "Berichtengeschiedenis";
+                        eMsgList.appendChild(eHeading);
+                        var eGesprek = document.createElement('div');
                         for (var i = 0; i < msgs.length; i++) {          //while-lus van maken: zolang vanID of naarID != partnerProfiel.id
-                            console.log(partnerProfiel.id, userId);                 // waarde = 1 + 2
-                            console.log(msgs[i][0].vanId == partnerProfiel.id);     //geeft ook false weer
-                            console.log(msgs[i][0].naarId == partnerProfiel.id);    //geeft false weer
-                            console.log(msgs[i][0].naarId);                         //waarde = 2
-                            console.log(msgs[i][0].vanId);                          //waarde = 4
-                            console.log(partnerProfiel.id);                         //waarde = 1
-                            if (msgs[i][0].vanId == partnerProfiel.id || msgs[i][0].naarId == partnerProfiel.id) {
+                            if (msgs[i][0].vanId == partnerProfiel.id || msgs[i][0].naarId == partnerProfiel.id ) {
                                 console.log(msgs[i][0].vanId, msgs[i][0].naarId, userId);
-                                for (var j = 0; j < msgs[i][j].length; j++) {
-                                    ////////////////gaat niet in deze loop/////////////////
+                                console.log(i);
+                                for (var j = 0; j < msgs[i].length; j++) {       //msgs[i][j].length
+                                    var eBericht = document.createElement('div');
+                                    eBericht.className = "bericht";
+                                    eBericht.id = "bericht" + (j+1);
+                                    console.log(msgs[i].length);
+
                                     if (msgs[i][j].vanId == userId) {
-                                        var eName = document.createTextNode(fetchProfile(userId) + ': ');
+                                        console.log(userId);
+                                        var eName = document.createElement('p');
+                                        ////////////////waarde wordt niet doorgegeven/////////////////
+                                        /*
+                                        var sUserName = fetchProfile(userId);
+                                        console.log(sUserName);
+                                        */
+                                        eName.innerHTML = fetchProfile(userId) + ': ';
+                                        console.log(fetchProfile(userId));
+                                        eName.className = "nicknameBoodschap";
                                         eBericht.appendChild(eName);
                                     }
                                     else {
-
-                                        var eName = document.createTextNode(profiel.nickname + ': ');
+                                        var eName = document.createElement('p');
+                                        eName.innerHTML = partnerProfiel.nickname + ': ';
+                                        eName.className = "nicknameBoodschap";
                                         eBericht.appendChild(eName);
                                     }
-                                    var eBoodschap = document.createTextNode(msgs[i][j].bericht);
+                                    var eBoodschap = document.createElement('p');
+                                    eBoodschap.innerHTML = msgs[i][j].bericht;
+                                    eBoodschap.className = 'boodschap';
                                     eBericht.appendChild(eBoodschap);
+                                    eGesprek.appendChild(eBericht);
+                                    eGesprek.id = 'gesprek';
+                                    eGesprek.className = 'gesprek';
+
+                                    if (j % 2 == 0) {
+                                        eBericht.style.backgroundColor = "GainsBoro";
+                                    }
+                                    else {
+                                        eBericht.style.backgroundColor = "PaleGreen";
+                                    }
                                 }
                             }
                         }
-                        eBericht.id = "bericht" + (i + 1);
-                        eBericht.class = "bericht";
-                        eMsgList.appendChild(eBericht);
+                        eMsgList.appendChild(eGesprek);
+                        eMain.appendChild(eMsgList);
                     })
                     .catch(function (error) { console.log(error); });
             });
@@ -108,11 +140,12 @@ function addChatPartner(partner, userId) {
 }
 
 function fetchProfile(userId) {
-    let url = rooturl + '/profiel/read_one.php?id=' + userId;
-    fetch(url)
-        .then(function (resp) { return resp.json(); })
-        .then(function (profiel) {
-            return profiel.nickname;
-        })
-        .catch(function (error) { console.log(error); });
+        let url = rooturl + '/profiel/read_one.php?id=' + userId;  
+        fetch(url)
+            .then(function (resp) { return resp.json(); })
+            .then(function (profiel) {
+                console.log(profiel.nickname);
+                return profiel.nickname;
+            })
+            .catch(function (error) { console.log(error); });
 }

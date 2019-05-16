@@ -1,139 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 
 <head>
-    <title>Point your arrow</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <title>zoeken</title>
 </head>
 
 <body>
+    <div id="zoeken">
+        <main>
 
-    <form id="zoekform" name="zoekform">
-        <div>
-            <label for="nickname">Nickname: </label>
-            <input type="text" name="nickname" id="nickname" />
-        </div>
-        <div>
-            <label for="beroep">Beroep: </label>
-            <input type="text" name="beroep" id="beroep" />
-        </div>
-        <div>
-            <label for="geslacht">Welk geslacht? *</label>
-            <select name="geslacht" id="geslacht">
-                <option value="" selected>------ Kies -------</option>
-                <option>m</option>
-                <option>v</option>
-                <option>x</option>
-            </select>
-        </div>
-        <div>
-            <label for="haarkleur">Haarkleur: *</label>
-            <input type="text" name="haarkleur" id="haarkleur" />
-        </div>
-        <div>
-            <label for="oogkleur">Oogkleur: *</label>
-            <input type="text" name="oogkleur" id="oogkleur" />
-        </div>
-        <div>
-            <label for="grootte">Grootte: </label>
-            <input type="text" name="grootte" id="grootte" />
-        </div>
-        <div>
-            <label for="gewicht">Gewicht: </label>
-            <input type="text" name="gewicht" id="gewicht" />
-        </div>
-        <button type="button" id="zoek">ZOEK</button>
-
-        <ul id="lijst">
-
-        </ul>
-
-    </form>
-
-    <script>
-        var rooturl = "https://scrumserver.tenobe.org/scrum/api";
-
-        function changeURL(sNewRoot) {
-            rooturl = sNewRoot;
-            console.log('root set to : ' + rooturl)
-        }
-
-        window.onload = function () {
-            document.getElementById('zoek').addEventListener('click', function (e) {
-                var url = rooturl + '/profiel/search.php?';
-                //VALIDATIE GEGEVENS
-                if (validatie() == true) {
-                    if (document.getElementById('nickname').value != "") {
-                        url += 'nickname=' + document.getElementById('nickname').value + '&';
-                    }
-                    if (document.getElementById('beroep').value != "") {
-                        url += 'beroep=' + document.getElementById('beroep').value + '&';
-                    }
-                    if (document.getElementById('geslacht').value != "") {
-                        url += 'sexe=' + document.getElementById('geslacht').value + '&';
-                    }
-                    if (document.getElementById('haarkleur').value != "") {
-                        url += 'haarkleur=' + document.getElementById('haarkleur').value;
-                    }
-                    fetch(url)
-                        .then(function (resp) { return resp.json(); })
-                        .then(function (data) {
-                            let test = [data]
-                            let lijst = document.getElementById("lijst");
-                            console.log(data);
-                            for (let i = 0; i < data.length; i++) {
-                                test[i] = data[i]
-                                //console.log(test[i].voornaam + test[i].familienaam)
-                                let item = document.createElement('li');
-                                item.innerHTML = test[i].voornaam + ' ' + test[i].familienaam
-                                lijst.appendChild(item);
-                            }
-                        })
-                        .catch(function (error) { console.log(error); });
-
-                    //resetten formulier
-                    var eLijst = document.getElementById('zoekform');
-                    eLijst.reset();
-
-                }; //einde IF    
-            }); // einde click
-
-        } // einde window onload
-
-        function validatie() {
+            <header>
+                <h1>AT. FIRST. SIGHT.</h1>
+            </header>
 
 
-            if ((isNaN(document.zoekform.grootte.value) || document.zoekform.grootte.value <= 0 || document.zoekform.grootte.value >= 250) && document.zoekform.grootte.value != "") {
-                alert('Geef een geldige grootte');
-                return false
-            };
-            if ((isNaN(document.zoekform.gewicht.value) || document.zoekform.gewicht.value <= 0 || document.zoekform.gewicht.value >= 600) && document.zoekform.gewicht.value != "") {
-                alert('Geef een geldig gewicht');
-                return false
-            };
-
-            return true;
-        }; //einde validatiefunctie
-
-        /*if (document.zoekform.haarkleur.value == '') {
-    alert('Kies een haarkleur');
-    return false
-};
-if (document.zoekform.oogkleur.value == '') {
-    alert('Kies een oogkleur');
-    return false
-};
-
-if (document.zoekform.geslacht.value == '') {
-    alert('Kies een geslacht');
-    return false
-};*/
+            <nav class="subheader">
+                <ul>
+                    <li><a href="./berichten.html">berichten</a> </li>
+                    <li><a href="./profiel.html">profiel</a> </li>
+                    <li><a href="#">reserve1</a> </li>
+                    <li><a href="#">reserve2</a> </li>
+                </ul>
+            </nav>
 
 
-    </script>
+            <h2>zoeken</h2>
+
+            <div class="content">
+                <div class="wrapper">
+                    <form id="zoekform">
+                        <div>
+                            <label for="nickname">Nickname: </label>
+                            <input type="text" name="nickname" id="nickname" />
+                        </div>
+                        <div>
+                            <label for="beroep">Beroep: </label>
+                            <input type="text" name="beroep" id="beroep" />
+                        </div>
+                        <div>
+                            <label for="geslacht">Welk geslacht?</label>
+                            <select name="geslacht" id="geslacht">
+                                <option value="" selected>------ Kies -------</option>
+                                <option>m</option>
+                                <option>v</option>
+                                <option>x</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="haarkleur">Haarkleur: </label>
+                            <input type="text" name="haarkleur" id="haarkleur" />
+                        </div>
+                        <div>
+                            <label for="oogkleur">Oogkleur: </label>
+                            <input type="text" name="oogkleur" id="oogkleur" />
+                        </div>
+                        <div>
+                            <label for="grootte">Grootte: </label>
+                            <input type="text" name="grootte" id="grootte" />
+                        </div>
+                        <div>
+                            <label for="gewicht">Gewicht: </label>
+                            <input type="text" name="gewicht" id="gewicht" />
+                        </div>
+                        <button type="button" id="zoek">ZOEK</button>
+                        <ul id="lijst"></ul>
+                    </form>
+
+                </div>
+
+            </div>
+        </main>
+
+        <div class="man"><img src="./man-220259_640.jpg" alt="man"></div>
+
+        <div class="vrouw"><img src="./woman-220269_640.jpg" alt="vrouw"></div>
+
+        <footer>
+            <p>Copyright © 2019 VDAB.
+                Niets uit deze website mag worden verveelvoudigd en/of openbaar gemaakt door middel van druk, fotokopie,
+                microfilm of anderszins, zonder voorafgaande schriftelijke toestemming van de VDAB.</p>
+        </footer>
+    </div>
 
 
-
-
+    <script src="./zoeken.js"></script>
 </body>
 
 </html>
