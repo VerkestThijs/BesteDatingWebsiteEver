@@ -1,0 +1,74 @@
+/* CSS Document voor At First Sight, pagina Berichten */
+
+body {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0 10%;
+}
+
+header {
+    font-size: 20px;
+    padding: 1% 5%;	
+}
+
+.gesprekspartner {
+    float:left;
+    height: 335px;
+    width: 280px;
+    box-sizing: border-box;
+    background-color: powderblue;
+    overflow: auto;
+    text-align: center;
+    margin-right: 25px;
+}
+
+img {
+    height: 225px;
+    width: 75%;
+    clear: both;
+    align-content: center;
+}
+
+#containerGesprekspartners {
+    display: block;
+    clear: both;
+}
+
+#containerBerichten {
+    display:block;
+    clear: both;
+}
+
+.bericht {
+    display: block;
+    clear: both;
+    border-width: 1px;
+    border-style: dashed;
+    margin-bottom: 10px;
+}
+
+.nicknameGesprekspartner {
+    font-weight: bold;
+    padding: 2px;
+    display: block;
+}
+
+.nicknameBoodschap {
+    font-weight: bold;
+    padding: 2px;
+    display: inline-block;
+    clear:left;
+}
+
+.boodschap {
+    font-style: italic;
+    padding: 2px;
+    display: inline-block;
+    clear:right;
+}
