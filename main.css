@@ -222,14 +222,10 @@ footer {
 /* ============  BERICHTEN  ============*/
 
 .gesprekspartner {
-    float: left;
-    height: 335px;
-    width: 280px;
-    box-sizing: border-box;
-    background-color: powderblue;
-    overflow: auto;
-    text-align: center;
-    margin-right: 25px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 5px;
+    height: 10em;
 }
 
 #berichten img {
@@ -240,49 +236,37 @@ footer {
 }
 
 #containerGesprekspartners {
-    display: block;
-    clear: both;
+
 }
 
 #containerBerichten {
-    display: block;
-    clear: both;
+
 }
 
 .bericht {
-    display: block;
-    clear: both;
-    border-width: 1px;
-    border-style: dashed;
-    margin-bottom: 10px;
+max-width: 33%;
+
 }
 
 .nicknameGesprekspartner {
-    font-weight: bold;
-    padding: 2px;
-    display: block;
+
 }
 
 .nicknameBoodschap {
-    font-weight: bold;
-    padding: 2px;
-    display: inline-block;
-    clear: left;
+ 
 }
 
 .boodschap {
-    font-style: italic;
-    padding: 2px;
-    display: inline-block;
-    clear: right;
+
 }
 
 #containerGesprekspartners img {
     background: white;
-    border: 2px solid grey;
-    height: 4em;
+    border: 2px solid rgb(141, 75, 75);
+    border-radius: 10px;
     float: left;
-    clear: left;
+    width: 150px;
+    height: 150px;
 }
 
 /*====================================================================================================*/
@@ -421,11 +405,11 @@ a[class=inschrijven]:hover {
     display: block;
 }
 
-#overlay {}
-.main{
+.main {
     pointer-events: none;
 }
-button, a{
+
+button, a {
     pointer-events: all;
 }
 
@@ -455,6 +439,7 @@ button, a{
     margin-top: 2%;
     font-weight: bold;
 }
+
 #zoeken button:hover {
     opacity: .8;
     height: 2em;
@@ -463,6 +448,7 @@ button, a{
     margin-top: 2%;
     font-weight: bold;
 }
+
 .fuzzy {
     font-size: 80%;
     font-weight: bolder;
