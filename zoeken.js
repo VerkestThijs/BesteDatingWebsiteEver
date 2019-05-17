@@ -74,14 +74,14 @@ window.onload = function () {
 
 function validatie() {
 
-    //let grootte = document.getElementById('grootte');
-    //let gewicht = document.getElementById('gewicht');
+    let grootte = document.getElementById('grootte');
+    let gewicht = document.getElementById('gewicht');
 
-    if ((isNaN(document.zoekform.grootte.value) || document.zoekform.grootte.value <= 0 || document.zoekform.grootte.value >= 250) && document.zoekform.grootte.value != "") {
+    if ((isNaN(grootte) || grootte <= 0 || grootte >= 250) && grootte != "") {
         alert('Geef een geldige grootte');
         return false
     };
-    if ((isNaN(document.zoekform.gewicht.value) || document.zoekform.gewicht.value <= 0 || document.zoekform.gewicht.value >= 600) && document.zoekform.gewicht.value != "") {
+    if ((isNaN(gewicht) || gewicht <= 0 || gewicht >= 600) && gewicht != "") {
         alert('Geef een geldig gewicht');
         return false
     };
