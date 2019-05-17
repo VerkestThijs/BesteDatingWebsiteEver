@@ -65,7 +65,9 @@ function fnLogin() {
                 window.open("zoeken.html" , "_self");
             }
             else if (data.message == "Unauthorized"){
-                alert("nickname of wachtwoord is foutief");
+                var waarschuwing = document.createElement('p');
+                waarschuwing.textContent = "nickname of wachtwoord is niet correct";
+                document.getElementById('frmLogin').appendChild(waarschuwing);
                 }
             })
         .catch(function (error) { console.log(error); });
@@ -78,8 +80,9 @@ document.getElementById('index').onclick = function(event){
 }
 //Dropdown sluiten bij naast klikken
 function fnNoDropDown (event){
-    if ((!event.target.matches('.dropbtn'))) {
-        if ((!event.target.matches('.dropdown-con'))) {
+    if (event.target.matches('#index')){
+    //if ((!event.target.matches('.dropbtn'))) {
+        //if ((!event.target.matches('.dropdown-con') || !event.target(matches('.dropdown-con')))) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
             for (i = 0; i < dropdowns.length; i++) {
@@ -95,7 +98,7 @@ function fnNoDropDown (event){
                     fnLogin();
                 }
             }); 
-        }
+        //}
     }
 }
 
