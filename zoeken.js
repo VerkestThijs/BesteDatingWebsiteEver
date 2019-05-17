@@ -74,8 +74,8 @@ window.onload = function () {
 
 function validatie() {
 
-    let grootte = document.getElementById('grootte');
-    let gewicht = document.getElementById('gewicht');
+    let grootte = document.getElementById('grootte').value;
+    let gewicht = document.getElementById('gewicht').value;
 
     if ((isNaN(grootte) || grootte <= 0 || grootte >= 250) && grootte != "") {
         alert('Geef een geldige grootte');
