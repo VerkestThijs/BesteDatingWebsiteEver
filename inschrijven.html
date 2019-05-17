@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <link rel="stylesheet" href="main.css">
+    <title>Profiel aanmaken</title>
+</head>
+
+<body>
+    <div id="inschrijven">
+        <main>
+
+            <header>
+                <h1>AT. FIRST. SIGHT.</h1>
+            </header>
+
+
+            <nav class="subheader">
+                <ul>
+                    <li><a href="./berichten.html">berichten</a> </li>
+                    <li><a href="./profiel.html">profiel</a> </li>
+                    <li><a href="./zoeken.html">zoeken</a> </li>
+                    <li><a href="./lovecoins.html">lovecoins</a> </li>
+                    <li><a href="./over_ons.html">over ons</a> </li>
+                </ul>
+            </nav>
+
+
+            <h2>inschrijven</h2>
+
+            <div class="content">
+                <div class="wrapper">
+
+                    <div class="Input">
+                        <label for="Naam">Naam: </label>
+                        <input type="text" id="Naam" class="inputveld" maxlength="1000" autofocus>
+                        <br>
+                        <label for="FamNaam">familienaam: </label>
+                        <input type="text" id="FamNaam" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="GeboorteDatum">GeboorteDatum: </label>
+                        <input type="date" id="GeboorteDatum" class="inputveld" onblur="creerSterrenbeeld()"
+                            maxlength="10">
+                        <br>
+                        <label for="Email">Email: </label>
+                        <input type="email" id="Email" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="Nickname">Nickname: </label>
+                        <input type="text" id="Nickname" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="foto">Foto: </label>
+                        <input type="text" id="Foto" name="foto" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="Beroep">Beroep: </label>
+                        <input type="text" id="Beroep" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="RadiobuttonSexe">Geslacht: </label>
+                        <div>
+                            <input type="radio" name="Sexe" value="m" checked>man <br>
+                            <input type="radio" name="Sexe" value="v">vrouw <br>
+                            <input type="radio" name="Sexe" value="x">x<br>
+                        </div>
+
+
+                        <label for="Haarkleur">Haarkleur: </label>
+                        <input type="text" id="Haarkleur" class="inputveld" maxlength="50">
+                        <br>
+                        <label for="Oogkleur">Oogkleur: </label>
+                        <input type="text" id="Oogkleur" class="inputveld" maxlength="50">
+                        <br>
+                        <label for="Grootte">Grootte: </label>
+                        <input type="text" id="Grootte" class="inputveld">
+                        <br>
+                        <label for="Gewicht">Gewicht: </label>
+                        <input type="text" id="Gewicht" class="inputveld">
+                        <br>
+                        <label for="Wachtwoord">Wachtwoord: </label>
+                        <input type="password" id="Wachtwoord" class="inputveld" maxlength="1000">
+                        <br>
+                        <label for="Sterrenbeeld">Sterrenbeeld: </label>
+                        <input type="text" id="Sterrenbeeld" class="inputveld">
+                    </div>
+                    <div class="button">
+                        <button type="button" id="VerzendKnop">Verzenden</button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+
+        <div class="man"><img src="./man-220259_640.jpg" alt="man"></div>
+        <div class="vrouw"><img src="./woman-220269_640.jpg" alt="vrouw"></div>
+
+        <footer>
+            <p>Copyright © 2019 VDAB.
+                Niets uit deze website mag worden verveelvoudigd en/of openbaar gemaakt door middel van druk, fotokopie,
+                microfilm of anderszins, zonder voorafgaande schriftelijke toestemming van de VDAB.</p>
+        </footer>
+    </div>
+
+
+    <script src="inschrijven.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <title>zoeken</title>
+</head>
+
+<body>
+    <div id="zoeken">
+        <main>
+
+            <header>
+                <h1>AT. FIRST. SIGHT.</h1>
+            </header>
+
+
+            <nav class="subheader">
+                <ul>
+                    <li><a href="./berichten.html">berichten</a> </li>
+                    <li><a href="./profiel.html">profiel</a> </li>
+                    <li><a href="./lovecoins.html">lovecoins</a> </li>
+                    <li><a href="./over_ons.html">over ons</a> </li>
+                </ul>
+            </nav>
+
+
+            <h2>zoeken</h2>
+
+            <div class="content">
+                <div class="wrapper">
+                    <form id="zoekform">
+                        <div>
+
+
+                            <div class="fuzzy">
+                                <p>Je kan ook een persoon zoeken door in een 1 of meerdere criteria een %-teken in te
+                                    voeren.
+                                    Dit werkt zowel voor de naam, het beroep, haarkleur en de grootte.</p>
+                                <p>Het %-teken kan zowel voor het zoekwoord komen als erna.</p>
+                                <p>Bijvoorbeeld: Je zoekt iemand waarvan je weet dat er een ypsilon (y) in de naam
+                                    voorkomt, dan
+                                    kan je zowel de combinaties "%y", "y%" alsook "%y%" toepassen.
+                                </p>
+                            </div>
+
+
+                            <label for="nickname">Nickname: </label>
+                            <input type="text" name="nickname" id="nickname" />
+                        </div>
+                        <div>
+                            <label for="beroep">Beroep: </label>
+                            <input type="text" name="beroep" id="beroep" />
+                        </div>
+                        <div>
+                            <label for="geslacht">Welk geslacht?</label>
+                            <select name="geslacht" id="geslacht">
+                                <option value="" selected>------ Kies -------</option>
+                                <option>m</option>
+                                <option>v</option>
+                                <option>x</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="haarkleur">Haarkleur: </label>
+                            <input type="text" name="haarkleur" id="haarkleur" />
+                        </div>
+                        <div>
+                            <label for="oogkleur">Oogkleur: </label>
+                            <input type="text" name="oogkleur" id="oogkleur" />
+                        </div>
+                        <div>
+                            <label for="grootte">Grootte: </label>
+                            <input type="text" name="grootte" id="grootte" />
+                            <label for="groperator">grootteOperator</label>
+                            <select name="groperator" id="groperator">
+                                <option value="" selected>------ Kies -------</option>
+                                <option value="gt">Groter dan</option>
+                                <option value="gteq">Groter dan of gelijk</option>
+                                <option value="st">Kleiner dan</option>
+                                <option value="steq">Kleiner dan of gelijk</option>
+                                <option value="eq">Gelijk</option>
+                            </select>
+
+                        </div>
+                        <div>
+                            <label for="gewicht">Gewicht: </label>
+                            <input type="text" name="gewicht" id="gewicht" />
+                            <label for="geoperator">gewichtOperator</label>
+                            <select name="geoperator" id="geoperator">
+                                <option value="" selected>------ Kies -------</option>
+                                <option value="gt">Groter dan</option>
+                                <option value="gteq">Groter dan of gelijk</option>
+                                <option value="st">Kleiner dan</option>
+                                <option value="steq">Kleiner dan of gelijk</option>
+                                <option value="eq">Gelijk</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="ordenge">OrderBy </label>
+                            <input type="text" name="ordenge" id="ordenge" />
+                        </div>
+                        <button type="button" id="zoek">ZOEK</button>
+                        <ul id="lijst"></ul>
+                    </form>
+
+                </div>
+
+            </div>
+        </main>
+
+        <div class="man"><img src="./man-220259_640.jpg" alt="man"></div>
+
+        <div class="vrouw"><img src="./woman-220269_640.jpg" alt="vrouw"></div>
+
+        <footer>
+            <p>Copyright © 2019 VDAB.
+                Niets uit deze website mag worden verveelvoudigd en/of openbaar gemaakt door middel van druk, fotokopie,
+                microfilm of anderszins, zonder voorafgaande schriftelijke toestemming van de VDAB.</p>
+        </footer>
+    </div>
+
+
+    <script src="./zoeken.js"></script>
+</body>
+
+</html>
