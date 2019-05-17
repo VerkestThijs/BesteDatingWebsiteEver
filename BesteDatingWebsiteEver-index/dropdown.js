@@ -4,6 +4,8 @@ var rooturl = "https://scrumserver.tenobe.org/scrum/api";
             rooturl = sNewRoot;
             console.log('root set to : ' + rooturl)
 }
+var times = false;
+var keren = false;
 
 window.onload = function () {
     //localstorage controle + instellen
@@ -13,10 +15,6 @@ window.onload = function () {
     else{
         document.getElementById('dropbtn').addEventListener('click', fnLocalStorage);
     }
-
-    document.getElementById('frmNickname').addEventListener('click', function(e){
-        document.getElementById('frmNickname').focus();
-    })
 }
 
 /* When the user clicks on the button,
@@ -26,12 +24,16 @@ function fnDropDown() {
     document.querySelector('.main').classList.toggle("blur");
     document.getElementById("frmNickname").focus();
 
-    window.addEventListener('keyup', function(event){
-        if (event.keyCode === 13){
-            event.preventDefault;
-            fnLogin();
-        }
-    })
+    if (times == false){
+        window.addEventListener('keyup', function(event){
+            if (event.keyCode === 13){
+                event.preventDefault;
+                fnLogin();
+            }
+        })
+    }
+    times = true;
+
 }
 
 window.onclick = function(event){
@@ -64,10 +66,11 @@ function fnLogin() {
                 //volgende window openen. vervang 'test' door correcte url
                 window.open("zoeken.html" , "_self");
             }
-            else if (data.message == "Unauthorized"){
+            else if (data.message == "Unauthorized" && keren == false){
                 var waarschuwing = document.createElement('p');
                 waarschuwing.textContent = "nickname of wachtwoord is niet correct";
                 document.getElementById('frmLogin').appendChild(waarschuwing);
+                keren = true;
                 }
             })
         .catch(function (error) { console.log(error); });
@@ -81,8 +84,6 @@ document.getElementById('index').onclick = function(event){
 //Dropdown sluiten bij naast klikken
 function fnNoDropDown (event){
     if (event.target.matches('#index')){
-    //if ((!event.target.matches('.dropbtn'))) {
-        //if ((!event.target.matches('.dropdown-con') || !event.target(matches('.dropdown-con')))) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
             for (i = 0; i < dropdowns.length; i++) {
