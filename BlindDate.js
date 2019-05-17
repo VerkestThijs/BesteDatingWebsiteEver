@@ -18,11 +18,12 @@ var url = rooturl + '/profiel/search.php?';
                             while (lijst.childElementCount != 0){
                                 lijst.removeChild(lijst.firstChild);
                             }
-                                let item = document.createElement('a');
+                                let item = document.createElement('li');
                                 item.innerHTML = BlindDate.nickname;
                                 sessionStorage.partnerId = BlindDate.id;
 
                                 item.addEventListener('click', function(e){
+                                    sessionStorage.nieuwId = BlindDate.id;
                                     window.open('berichten.html', '_self');
                                     
                                 })
