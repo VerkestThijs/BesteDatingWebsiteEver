@@ -444,12 +444,19 @@ a[class=inschrijven]:hover {
 
 #zoeken button {
     height: 2em;
-    width: 6em;
-    margin-left: 66.6%;
-    margin-top: 5%;
+    width: 8em;
+    margin-left: 60.6%;
+    margin-top: 2%;
     font-weight: bold;
 }
-
+#zoeken button:hover {
+    opacity: .8;
+    height: 2em;
+    width: 8em;
+    margin-left: 60.6%;
+    margin-top: 2%;
+    font-weight: bold;
+}
 .fuzzy {
     font-size: 80%;
     font-weight: bolder;
