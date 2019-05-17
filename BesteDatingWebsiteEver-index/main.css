@@ -1,0 +1,372 @@
+/* In deze CSS pagina zitten alle stijlregelsvan alle andere HTML pagina's vervat*/
+
+/* Beschrijving: */
+
+/* Bovenaan additionele + algemene styling*/
+
+/* Erna komen alle individuele pagina's aan bod*/
+
+/* Dit telkens voor 3 screen sizes (met query's) */
+
+/*====================================================================================================*/
+
+/* ============  ADDITIONEEL  ============*/
+
+.cf:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+/* ============  ALGEMEEN  ============*/
+
+#index button, a {
+    pointer-events: all;
+}
+
+.blur {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+}
+
+#index .main {
+    pointer-events: none;
+}
+
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper {
+    position: absolute;
+    left: 35%;
+    background: rgb(238, 214, 204);
+    padding: 2%;
+    color: brown;
+    height: 70vh;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.wrapper input {
+    position: absolute;
+    right: 20%;
+}
+
+.wrapper select {
+    position: absolute;
+    right: 25%;
+}
+
+.wrapper button {
+    color: #fff !important;
+    text-transform: uppercase;
+    background: #ed3330;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+}
+
+.wrapper #Foto input {
+    color: #fff !important;
+    text-transform: uppercase;
+    background: #ed3330;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+}
+
+#RadiobuttonMan {
+    position: absolute;
+    left: 25%
+}
+
+#RadiobuttonVrouw {
+    position: absolute;
+    left: 25%
+}
+
+#RadiobuttonX {
+    position: absolute;
+    left: 25%
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    height: 100px;
+    position: relative;
+    background-image: linear-gradient(white, rgb(146, 52, 52));
+    border-bottom: 5px solid whitesmoke;
+}
+
+.subheader {
+    height: 40px;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 2;
+}
+
+.subheader ul {
+    list-style-type: none;
+    background: rgb(146, 52, 52);
+    margin: 0;
+    padding: 0;
+}
+
+.subheader li {
+    text-align: center;
+    padding: 8%;
+    display: inline;
+    margin: 2%;
+}
+
+.subheader a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.subheader a:hover {
+    background: whitesmoke;
+    color: rgb(146, 52, 52);
+    border-radius: 4px;
+}
+
+h1 {
+    position: absolute;
+    margin-top: 0px;
+    left: 30%;
+    font-family: lobster;
+    font-size: 500%;
+    color: rgb(206, 87, 87);
+    -webkit-text-stroke: 1px rgba(31, 12, 12, 0.726);
+    word-spacing: 0.7em;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    letter-spacing: .2em;
+    background: rgb(166, 212, 243);
+}
+
+h3 {
+    text-align: center;
+}
+
+.content {
+    font-size: 1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.man img {
+    position: relative;
+    float: left;
+}
+
+.vrouw img {
+    position: sticky;
+    float: left;
+    left: 70%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 1%;
+    padding-bottom: 2%;
+    text-align: center;
+    color: rgb(82, 79, 79);
+    background-color: black;
+    width: 100%;
+}
+
+/*====================================================================================================*/
+
+/* === BERICHTEN ===*/
+
+/* ================ GSM SCHERM ================== */
+
+#containerGesprekspartners img {
+    background: white;
+    border: 2px solid grey;
+    height: 4em;
+    float: left;
+    clear: left;
+}
+
+#containerGesprekspartners {}
+
+/* ================ TABLET SCHERM ================== */
+
+/* @media only screen and (min-width: 768px) */
+
+/* ================ DESKTOP SCHERM ================== */
+
+/* @media only screen and (min-width: 1140px) */
+
+/* ============  INDEX  ============*/
+
+@media only screen and (min-width: 1140px) {
+    .bg {
+        background-image: url(/kissing-couple-1148914_1280.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 550px;
+    }
+    #index h1 {
+        font-size: 5.5em;
+        position: relative;
+        padding-top: 3em;
+        -webkit-text-stroke: 1px whitesmoke;
+    }
+    #index .wrapper {
+        background-image: linear-gradient(to bottom right, red, yellow);
+        color: black;
+        left: 33%;
+        height: 30vh;
+        padding: 12px;
+    }
+    button[name=inloggen] {
+        position: absolute;
+        float: right;
+        width: 10%;
+        background-color: rgba(201, 78, 78, 0.863);
+        color: whitesmoke;
+        border-color: whitesmoke;
+        word-spacing: 0.4em;
+        opacity: .8;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 14px 3px;
+        margin: 30px;
+        border-style: groove 10px;
+        border-radius: 8px;
+        top: 65px;
+        right: 15px;
+    }
+    button[name=inloggen]:hover {
+        font-size: 1.3em;
+        opacity: 1;
+        transition: all 0.4s ease-in-out;
+        border-radius: 12px;
+        border-color: black;
+        color: black;
+        border-width: 3px;
+    }
+    a[class=inschrijven] {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        position: absolute;
+        text-decoration: none;
+        text-align: center;
+        left: 40%;
+        top: 450px;
+        width: 20%;
+        opacity: .8;
+        background-color: rgba(201, 78, 78, 0.863);
+        color: whitesmoke;
+        border-color: whitesmoke;
+        padding: 14px 20px;
+        margin: 8px 0;
+        font-size: 1.2em;
+        border-style: groove;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: all 0.4s ease-in-out;
+    }
+    a[class=inschrijven]:hover {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        opacity: 1;
+        color: black;
+        border-radius: 12px;
+        font-size: 1.3em;
+        border-color: black;
+        border-width: 3px;
+    }
+    /* Dropdown Button */
+    .dropdown {
+        position: absolute;
+        margin-left: 35%;
+        width: 30%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: inline-block;
+        -webkit-appearance: searchfield;
+        opacity: .9;
+        background: rgba(201, 78, 78, 0.863);
+        color: whitesmoke;
+        font-size: 1.5em;
+        text-align: center;
+        border-radius: 10px;
+        border: 2px solid whitesmoke;
+    }
+    .dropdown input {
+        margin-left: 20%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 1.8em;
+        width: 20em;
+        border-radius: 8px;
+        border-style: double rgb(3, 3);
+    }
+    .dropdown-content {
+        display: none;
+        position: relative;
+        z-index: 100;
+    }
+    .dropdown-content button {
+        color: whitesmoke;
+        background: rgb(44, 126, 118);
+        font-size: 80%;
+        text-transform: uppercase;
+        border-radius: 6px;
+        margin-top: 0.5em;
+        margin-bottom: .5em;
+    }
+    #input {
+        width: 20em;
+    }
+    .show {
+        display: block;
+    }
+    #overlay {}
+    /*====================================================================================================*/
+    /* ============  INSCHRIJVEN  ============*/
+    /* ================ GSM SCHERM ================== */
+    /* ================ TABLET SCHERM ================== */
+    /* @media only screen and (min-width: 768px) */
+    /* ================ DESKTOP SCHERM ================== */
+    /* @media only screen and (min-width: 1140px) */
+    #inschrijven .subheader li {
+        text-align: center;
+        padding: 5%;
+        display: inline;
+        margin: 2%;
+    }
+    /*====================================================================================================*/
+    /* ============  PROFIEL  ============*/
+    /* ================ GSM SCHERM ================== */
+    /* ================ TABLET SCHERM ================== */
+    /* @media only screen and (min-width: 768px) */
+    /* ================ DESKTOP SCHERM ================== */
+    /* @media only screen and (min-width: 1140px) */
+    /*====================================================================================================*/
+    /* ============  ZOEKEN  ============*/
+    /* ================ GSM SCHERM ================== */
+    /* ================ TABLET SCHERM ================== */
+    /* @media only screen and (min-width: 768px) */
+    /* ================ DESKTOP SCHERM ================== */
+    /* @media only screen and (min-width: 1140px) */
