@@ -41,6 +41,7 @@ function Verstuur() {
 
     fetch(request)
         .then(function (resp) { return resp.json(); })
+        .then(function (response) {if(response.message =="Het profiel werd aangemaakt."){window.open("profiel.html","_self")}})
         .then(function (data) { console.log(data); })
         .catch(function (error) { console.log(error); });
 
@@ -208,27 +209,7 @@ function CreerJson() {
 
 
 
-    // data = {
-
-    //     familienaam: Famielienaam,
-    //     voornaam: Naam,
-    //     geboortedatum: Geboortedatum,
-    //     email: Email,
-    //     nickname: Nickname,
-    //     foto: base64string,
-    //     beroep: Beroep,
-    //     sexe: Sexe,
-    //     haarkleur: Haarkleur,
-    //     oogkleur: Oogkleur,
-    //     grootte: Grootte,
-    //     gewicht: Gewicht,
-    //     wachtwoord: Wachtwoord,
-    //     Sterrenbeeld: Sterrenbeeld,
-    //     lovecoins: String(0)
-
-    // };
-
-    // return data
+    
 
 
 
