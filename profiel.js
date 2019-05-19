@@ -7,8 +7,7 @@ function changeURL(sNewRoot) {
 
 window.onload = function () {
 
-    //let profielId = sessionStorage.id;   
-    let profielId = 5000;
+    let profielId = sessionStorage.id;                                          //test: let profielId = 5000;
     let url = rooturl + '/profiel/read_one.php?id=' + profielId;
 
     fetch(url)
@@ -16,7 +15,7 @@ window.onload = function () {
         .then(function (userGegevens) {
             console.log(userGegevens);
             let eProfielvelden = document.getElementsByClassName("inputveld");
-            InsertDataAsPlaceholder(userGegevens, eProfielvelden);
+            voegPlaceholderToe(userGegevens, eProfielvelden);
         })
         .catch(function (error) { console.log(error); });
 
@@ -27,26 +26,27 @@ window.onload = function () {
     document.getElementById("Deleteknop").addEventListener("click", Delete);
 }
 
-function InsertDataAsPlaceholder(data, velden) {
+function voegPlaceholderToe(data, velden) {
     velden[0].placeholder = data.nickname;
     velden[1].placeholder = data.voornaam;
     velden[2].placeholder = data.familienaam;
-    velden[3].placeholder = ToonGeslacht(data.sexe);
+    velden[3].placeholder = toonGeslacht(data.sexe);
     velden[4].placeholder = data.geboortedatum.substring(data.geboortedatum.length - 2, data.geboortedatum.length)
         + '/' + data.geboortedatum.substring(data.geboortedatum.length - 5, data.geboortedatum.length - 3)
         + '/' + data.geboortedatum.substring(0, 4);
-    velden[5].placeholder = data.email;
-    velden[6].placeholder = data.foto;
-    velden[7].placeholder = data.beroep;
-    velden[8].placeholder = data.haarkleur;
-    velden[9].placeholder = data.oogkleur;
-    velden[10].placeholder = data.grootte;
-    velden[11].placeholder = data.gewicht;
-    velden[12].placeholder = verbergWachtwoord(data.wachtwoord);
-    velden[12].placeholder = creerSterrenbeeld();
+    velden[5].placeholder = geefSterrenbeeld(data.geboortedatum);
+    velden[6].placeholder = data.email;
+    velden[7].placeholder = data.foto;
+    velden[8].placeholder = data.beroep;
+    velden[9].placeholder = data.haarkleur;
+    velden[10].placeholder = data.oogkleur;
+    velden[11].placeholder = data.grootte;
+    velden[12].placeholder = data.gewicht;
+    velden[13].placeholder = data.lovecoins;
+    velden[14].placeholder = verbergWachtwoord(data.wachtwoord);
 }
 
-function ToonGeslacht(geslacht) {
+function toonGeslacht(geslacht) {
     if (geslacht == 'v') {
         return "vrouw";
     }
@@ -71,8 +71,7 @@ function verbergWachtwoord(wachtwoord) {
 
 function Updaten() {
 
-    //let profielId = sessionStorage.id;   
-    let profielId = 5000;
+    let profielId = sessionStorage.id;
     let url = rooturl + '/profiel/read_one.php?id=' + profielId;
 
     fetch(url)
@@ -96,15 +95,18 @@ function Updaten() {
 
             aVeldIds = ['email', 'foto', 'beroep', 'haarkleur', 'oogkleur', 'grootte', 'gewicht', 'wachtwoord'];
 
-            for (let i = 0; i < aIngevuldeVelden.length; i++) {
-                if (aIngevuldeVelden[i] == "") {
-                }
-                else {
-                    userGegevens[aVeldIds[i]] = aIngevuldeVelden[i];
-                }
+            //validatie
+            if ((nieuweGrootte != "" && isNaN(nieuweGrootte)) || (nieuwGewicht != "" && isNaN(nieuwGewicht))) {
+                alert("U heeft bij grootte en/of gewicht geen getal opgegeven." + "\r\n" + "Uw profiel werd niet gewijzigd.");
             }
-
-            
+            else {
+                for (let i = 0; i < aIngevuldeVelden.length; i++) {
+                    if (aIngevuldeVelden[i] != "") {
+                        userGegevens[aVeldIds[i]] = aIngevuldeVelden[i];
+                    }
+                }
+                alert("Uw profiel werd aangepast.");
+            }
 
             var request = new Request(urlUpdate, {
                 method: 'PUT',
@@ -120,7 +122,7 @@ function Updaten() {
                 .then(function (resp) { return resp.json(); })
                 .then(function (data) { console.log(data);
                     let eProfielvelden = document.getElementsByClassName("inputveld");
-                    InsertDataAsPlaceholder(userGegevens, eProfielvelden);
+                    voegPlaceholderToe(userGegevens, eProfielvelden);
                  })
                 .catch(function (error) { console.log(error); });
         })
@@ -129,73 +131,56 @@ function Updaten() {
         });
 }
 
-/*function creerSterrenbeeld() {
+function geefSterrenbeeld(geboortedatum) {
 
-    let datum = document.getElementById("Geboortedatum").value;
-    let dag = datum.substr(8,2);
-    let maand = datum.substr(5,2);
-
-    let Sterrenbeeld = document.getElementById("Sterrenbeeld") 
-    console.log(datum);
-
-
-
+    let dag = geboortedatum.substr(8,2);
+    let maand = geboortedatum.substr(5,2);
 
     if ((dag >= 22 && maand== 12)||(dag <=19 && maand ==01)) {
-        Sterrenbeeld.value ="Steenbok";
-        console.log(Sterrenbeeld);
-        
+        return "Steenbok";
+
     }
     if (((dag >=20 && maand==01)||(dag <=19 && maand==02))) {
-        Sterrenbeeld.value ="Waterman";
+        return "Waterman";
     
     }
     if (((dag >=20 && maand==02)||(dag <=20 && maand==03))){
-        Sterrenbeeld.value="Vissen";
+        return "Vissen";
     }
     if (((dag >=21 && maand==03)||(dag <=20 && maand==04))) {
-        Sterrenbeeld.value="Ram";
+        return "Ram";
     }
     if (((dag >=21 && maand==04)||(dag <=20 && maand==05))) {
-        Sterrenbeeld.value="Stier";
+        return "Stier";
     }
     if (((dag >=21 && maand==05)||(dag <=21 && maand==06))) {
-        Sterrenbeeld.value="Tweeling";
+        return "Tweeling";
     }
     if (((dag >=21 && maand==06)||(dag <=22 && maand==07))) {
-        Sterrenbeeld.value="Kreeft";
+        return "Kreeft";
     }
     if (((dag >=23 && maand==07)||(dag <=23 && maand==08))) {
-        Sterrenbeeld.value="Leeuw";
+        return "Leeuw";
     }
     if (((dag >=24 && maand==08)||(dag <=23 && maand==09))) {
-        Sterrenbeeld.value="Maagd";
+        return "Maagd";
     }
     if (((dag >=24 && maand==09)||(dag <=23 && maand==10))) {
-        Sterrenbeeld.value="Weegschaal";
+        return "Weegschaal";
         
     }
     if (((dag >=24 && maand==10)||(dag <=22 && maand==11))) {
-        Sterrenbeeld.value="Schorpioen";
+        return "Schorpioen";
 
     }
     if (((dag >=23 && maand==11)||(dag <=21 && maand==12))) {
-        Sterrenbeeld.value="Boogschutter";
+        return "Boogschutter";
     }
-        
-    
 
-    console.log(dag+"dag")
-    console.log(maand +"maand");
-
-}*/
+}
 
 function Delete(){
-
-
     var userid = sessionStorage.id;
-
-    
 
     let url = rooturl + '/profiel/delete.php';
     //LET OP : rooturl = https://scrumserver.tenobe.org/scrum/api
@@ -215,7 +200,4 @@ function Delete(){
         .then(function (resp) { return resp.json(); })
         .then(function (data) { console.log(data); })
         .catch(function (error) { console.log(error); });
-
 }
-
-
