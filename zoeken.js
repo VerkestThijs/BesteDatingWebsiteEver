@@ -9,7 +9,7 @@ window.onload = function () {
     document.getElementById('zoek').addEventListener('click', function (e) {
         var url = rooturl + '/profiel/search.php?';
         //VALIDATIE GEGEVENS
-        if (validatie() == true) {            
+        if (validatie() == true) {
             if (document.getElementById('nickname').value != "") {
                 url += 'nickname=' + document.getElementById('nickname').value + '&';
             }
@@ -20,52 +20,53 @@ window.onload = function () {
                 url += 'sexe=' + document.getElementById('geslacht').value + '&';
             }
             if (document.getElementById('haarkleur').value != "") {
-                let haar = '%'+document.getElementById('haarkleur').value+'%';
+                let haar = '%' + document.getElementById('haarkleur').value + '%';
                 url += 'haarkleur=' + haar + '&';
             }
             if (document.getElementById('oogkleur').value != "") {
-                let oog = '%'+document.getElementById('oogkleur').value+'%';
+                let oog = '%' + document.getElementById('oogkleur').value + '%';
                 url += 'oogkleur=' + oog + '&';
             }
-            if (document.getElementById('grootte').value && document.getElementById('groperator').value != ""){
-                let grootte =  document.getElementById('grootte').value;
-                let grootteOperator =  document.getElementById('groperator').value;
-                url += 'grootte=' + grootte + '&grootteOperator=' + grootteOperator + '&';
+            if (document.getElementById('grootte').value && document.getElementById('groperator').value != "") {
+                let grootte = document.getElementById('grootte').value;
+                let grootteOperator = document.getElementById('groperator').value;
+                let orderbyge = document.getElementById('ordenge').value;
+                url += 'grootte=' + grootte + '&grootteOperator=' + grootteOperator + '&orderBy=' + orderbyge + '&';
             }
-            if (document.getElementById('gewicht').value && document.getElementById('geoperator').value != ""){
-                let gewicht =  document.getElementById('gewicht').value;
-                let gewichtOperator =  document.getElementById('geoperator').value;
-                let orderbyge =  document.getElementById('ordenge').value;
+            if (document.getElementById('gewicht').value && document.getElementById('geoperator').value != "") {
+                let gewicht = document.getElementById('gewicht').value;
+                let gewichtOperator = document.getElementById('geoperator').value;
+                let orderbyge = document.getElementById('ordenge').value;
                 url += 'gewicht=' + gewicht + '&gewichtOperator=' + gewichtOperator + '&orderBy=' + orderbyge + '&';
             }
-            
+
 
             fetch(url)
                 .then(function (resp) { return resp.json(); })
                 .then(function (data) {
                     let test = [data]
                     let lijst = document.getElementById("lijst");
-                    console.log(data); // TEST
-                    if(test[0].message == 'Geen profielen gevonden.'){
-                        let item = document.createElement('li');
-                        item.innerHTML = 'Geen profielen gevonden' 
-                        lijst.appendChild(item); 
+                    lijst.innerHTML = "";
+                    console.log(test); // TEST
+                    if (test[0].message == 'Geen profielen gevonden.') {
+                        alert('Geen profiel gevonden');
                     }
-                    else{
+                    else {
                         for (let i = 0; i < data.length; i++) {
-                            test[i] = data[i]
+                            test[i] = data[i];
                             let item = document.createElement('li');                           
                             item.innerHTML = test[i].nickname;
                             lijst.appendChild(item); 
                         };    
-
-                    }     
+                    }
                 })
                 .catch(function (error) { console.log(error); });
 
             //resetten formulier
             let eLijst = document.getElementById('zoekform');
             eLijst.reset();
+
+
 
         }; //einde IF  
     }); // einde click
@@ -88,3 +89,5 @@ function validatie() {
 
     return true;
 }; //einde validatiefunctie
+
+
