@@ -43,6 +43,7 @@ window.onclick = function(event){
 function fnLogin() {
     let nickname = document.getElementById("frmNickname").value;
     let wachtwoord = document.getElementById("frmWachtwoord").value;
+    localStorage.nickname = nickname;
 
     let url=rooturl+'/profiel/authenticate.php';
     //let url = 'http://scrumserver.tenobe.org/scrum/api/profiel/authenticate.php';
