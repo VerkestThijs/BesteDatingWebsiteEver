@@ -63,6 +63,7 @@
                                 <option>m</option>
                                 <option>v</option>
                                 <option>x</option>
+                                <option>%</option>
                             </select>
                         </div>
                         <div>
@@ -78,7 +79,7 @@
                             <input type="text" name="grootte" id="grootte" />
                         </div>
                         <div>
-                            <label for="groperator"> verfijn zoekterm grootte</label>
+                            <label for="groperator"> verfijn zoekterm</label>
                             <select name="groperator" id="groperator">
                                 <option value="" selected>------ Kies -------</option>
                                 <option value="gt">Groter dan</option>
@@ -86,15 +87,20 @@
                                 <option value="st">Kleiner dan</option>
                                 <option value="steq">Kleiner dan of gelijk</option>
                                 <option value="eq">Gelijk</option>
+                                <option value="range">range</option>
                             </select>
 
                         </div>
                         <div>
-                            <label for="gewicht">Gewicht: </label>
-                            <input type="text" name="gewicht" id="gewicht" />
+                            <label for="minGrootte">MinGrootte: </label>
+                            <input type="text" name="minGrootte" id="minGrootte" />
                         </div>
                         <div>
-                            <label for="geoperator"> verfijn zoekterm gewicht</label>
+                            <label for="maxGrootte">MaxGrootte: </label>
+                            <input type="text" name="maxGrootte" id="maxGrootte" />
+                        </div>
+                        <div>
+                            <label for="geoperator"> verfijn zoekterm</label>
                             <select name="geoperator" id="geoperator">
                                 <option value="" selected>------ Kies -------</option>
                                 <option value="gt">Groter dan</option>
@@ -102,7 +108,16 @@
                                 <option value="st">Kleiner dan</option>
                                 <option value="steq">Kleiner dan of gelijk</option>
                                 <option value="eq">Gelijk</option>
+                                <option value="range">range</option>
                             </select>
+                        </div>
+                        <div>
+                            <label for="minGewicht">MinGewicht: </label>
+                            <input type="text" name="minGewicht" id="minGewicht" />
+                        </div>
+                        <div>
+                            <label for="maxGewicht">MaxGewicht: </label>
+                            <input type="text" name="maxGewicht" id="maxGewicht" />
                         </div>
                         <div>
                             <label for="ordenge">Sorteer resultaten</label>
