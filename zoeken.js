@@ -76,6 +76,11 @@ window.onload = function () {
                             let item = document.createElement('li');
                             item.innerHTML = test[i].nickname;
                             lijst.appendChild(item);
+                            item.addEventListener('click',function (e) {
+                                    sessionStorage.nieuwId    =    test[i].id;
+                                    console.log(test[i].id);
+                                    window.open('berichten.html','_self');
+                                })
                         };
                     }
                 })
