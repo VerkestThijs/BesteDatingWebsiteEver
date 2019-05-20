@@ -27,37 +27,56 @@ window.onload = function () {
                 let oog = '%' + document.getElementById('oogkleur').value + '%';
                 url += 'oogkleur=' + oog + '&';
             }
-            if (document.getElementById('grootte').value && document.getElementById('groperator').value != "") {
-                let grootte = document.getElementById('grootte').value;
+            if (document.getElementById('grootte').value != "" || document.getElementById('groperator').value != "") {
                 let grootteOperator = document.getElementById('groperator').value;
-                let orderbyge = document.getElementById('ordenge').value;
-                url += 'grootte=' + grootte + '&grootteOperator=' + grootteOperator + '&orderBy=' + orderbyge + '&';
+                if (grootteOperator != "range") {
+                    let grootte = document.getElementById('grootte').value;
+                    let grootteOperator = document.getElementById('groperator').value;
+                    let orderbyge = document.getElementById('ordenge').value;
+                    url += 'grootte=' + grootte + '&grootteOperator=' + grootteOperator + '&orderBy=' + orderbyge + '&';
+
+                }
+                else {
+                    let rangeMinGrootte = document.getElementById('minGrootte').value;
+                    let rangeMaxGrootte = document.getElementById('maxGrootte').value;
+                    let orderbyge = document.getElementById('ordenge').value;
+                    url += '&grootteOperator=range&rangeMinGrootte=' + rangeMinGrootte + '&rangeMaxGrootte=' + rangeMaxGrootte + '&orderBy=' + orderbyge + '&'
+                }
             }
-            if (document.getElementById('gewicht').value && document.getElementById('geoperator').value != "") {
-                let gewicht = document.getElementById('gewicht').value;
+            if (document.getElementById('gewicht').value != "" || document.getElementById('geoperator').value != "") {
                 let gewichtOperator = document.getElementById('geoperator').value;
-                let orderbyge = document.getElementById('ordenge').value;
-                url += 'gewicht=' + gewicht + '&gewichtOperator=' + gewichtOperator + '&orderBy=' + orderbyge + '&';
+                if (gewichtOperator != "range") {
+                    let gewicht = document.getElementById('gewicht').value;
+                    let gewichtOperator = document.getElementById('geoperator').value;
+                    let orderbyge = document.getElementById('ordenge').value;
+                    url += 'gewicht=' + gewicht + '&gewichtOperator=' + gewichtOperator + '&orderBy=' + orderbyge + '&';
+
+                }
+                else {
+                    let rangeMinGewicht = document.getElementById('minGewicht').value;
+                    let rangeMaxGewicht = document.getElementById('maxGewicht').value;
+                    let orderbyge = document.getElementById('ordenge').value;
+                    url += '&gewichtOperator=range&rangeMinGewicht=' + rangeMinGewicht + '&rangeMaxGewicht=' + rangeMaxGewicht + '&orderBy=' + orderbyge + '&'
+
+                }
             }
-
-
             fetch(url)
                 .then(function (resp) { return resp.json(); })
                 .then(function (data) {
                     let test = [data]
                     let lijst = document.getElementById("lijst");
                     lijst.innerHTML = "";
-                    console.log(test); // TEST
+                    //console.log(test); // TEST
                     if (test[0].message == 'Geen profielen gevonden.') {
-                        alert('Geen profiel gevonden');
+                        alert('Geen profielen gevonden');
                     }
                     else {
                         for (let i = 0; i < data.length; i++) {
                             test[i] = data[i];
-                            let item = document.createElement('li');                           
+                            let item = document.createElement('li');
                             item.innerHTML = test[i].nickname;
-                            lijst.appendChild(item); 
-                        };    
+                            lijst.appendChild(item);
+                        };
                     }
                 })
                 .catch(function (error) { console.log(error); });
@@ -65,9 +84,6 @@ window.onload = function () {
             //resetten formulier
             let eLijst = document.getElementById('zoekform');
             eLijst.reset();
-
-
-
         }; //einde IF  
     }); // einde click
 
@@ -85,6 +101,7 @@ function validatie() {
     if ((isNaN(gewicht) || gewicht <= 0 || gewicht >= 600) && gewicht != "") {
         alert('Geef een geldig gewicht');
         return false
+
     };
 
     return true;
