@@ -13,7 +13,7 @@ window.onload = function () {
         document.getElementById("frmNickname").value = localStorage.nickname;
     }
     else{
-        document.getElementById('dropbtn').addEventListener('click', fnLocalStorage);
+        document.getElementById('loginbtn').addEventListener('click', fnLocalStorage);
     }
 }
 
