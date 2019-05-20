@@ -102,6 +102,30 @@ function addChatPartner(partner, userId, bericht = "") {
 
             ePartnerList.appendChild(ePartner);
 
+            
+            if (sessionStorage.nieuwId && partnerProfiel.id == sessionStorage.nieuwId){
+                console.log("nieuwId:")
+                console.log(sessionStorage.nieuwId);
+                document.getElementById('input' + sessionStorage.nieuwId).focus();
+                sessionStorage.removeItem('nieuwId');
+
+                let urlBerichten = rooturl + '/bericht/read.php?profielId=' + userId;
+                fetch(urlBerichten)
+                    .then(function (resp) { return resp.json(); })
+                    .then(function (msgs) {
+                        //plaats rode border rond actief partnerprofiel
+                        ePartner.style.borderWidth = "1px";
+                        ePartner.style.border = "solid";
+                        ePartner.style.borderColor = "red";
+
+                        //maak berichtenlijst
+                        fnBerichtenLijst(msgs, partnerProfiel, userId);
+                    })
+                    .catch(function (error) { console.log(error); });
+            }
+            else{
+
+            }
             eNieuwberichtBtn.addEventListener("click", function (e){
                 fnNieuwBericht(partnerProfiel);
             });
@@ -117,12 +141,11 @@ function addChatPartner(partner, userId, bericht = "") {
 
                 //verwijder border van alle aangeklikte gesprekspartners
                 var eAllePartners = document.getElementsByClassName('gesprekspartner');
-                console.log(eAllePartners.length);
-                console.log(eAllePartners);
+                //console.log(eAllePartners.length);
+                //console.log(eAllePartners);
                 for (var i = 0; i < eAllePartners.length; i++) {
                     eAllePartners[i].style.borderWidth = "";
                     eAllePartners[i].style.border = "";
-
                     eAllePartners[i].style.borderColor = "";
                 }
                 //geef alle berichten van ingelogde user
@@ -130,10 +153,16 @@ function addChatPartner(partner, userId, bericht = "") {
                 fetch(urlBerichten)
                     .then(function (resp) { return resp.json(); })
                     .then(function (msgs) {
+                        //console.log(msgs);
+
                         //plaats rode border rond actief partnerprofiel
                         ePartner.style.borderWidth = "1px";
                         ePartner.style.border = "solid";
                         ePartner.style.borderColor = "red";
+
+                        console.log(msgs);
+                        console.log(partnerProfiel);
+                        console.log(userId);
 
                         //maak berichtenlijst
                         fnBerichtenLijst(msgs, partnerProfiel, userId);
@@ -149,7 +178,7 @@ function fnNieuwePartner(){
     addChatPartner(sessionStorage.nieuwId, sessionStorage.id);
     //console.log(document.getElementById('input' + sessionStorage.nieuwId));
     //document.getElementById('input' + sessionStorage.nieuwId).focus();
-    sessionStorage.removeItem('nieuwId');
+    //sessionStorage.removeItem('nieuwId');
 }
 
 function fnNieuwBericht (partnerProfiel){
@@ -178,8 +207,37 @@ function fnNieuwBericht (partnerProfiel){
                 fetch(request)
                     .then( function (resp)  { return resp.json(); })
                     .then( function (data)  { 
+                        console.log(data);
                         if (data.message = "Bericht werd aangemaakt."){
-                            var eGesprek = document.getElementById('gesprek');
+                            console.log(document.getElementById('gesprek'));
+                            if (document.getElementById('gesprek') == null){
+
+                                console.log("round 1");
+                                let urlBerichten = rooturl + '/bericht/read.php?profielId=' + vanId;
+                                fetch(urlBerichten)
+                                    .then(function (resp) { return resp.json(); })
+                                    .then(function (msgs) {
+                                        //maak berichtenlijst
+                                        fnBerichtenLijst(msgs, partnerProfiel, localStorage.id);
+                                        //fnBerichtenLijst(msgs, partnerProfiel, localStorage.id);
+                                        var partner = document.getElementById('partner' + naarId);
+                                        partner.getElementsByClassName('boodschap')[0].textContent = bericht;
+                                        document.getElementById('input' + naarId).value = "";
+                                        //fnLijstAanvullen(naarId, bericht);
+                                    })
+                                    .catch(function (error) { console.log(error); });
+                            }
+                            else{
+                                fnLijstAanvullen(naarId, bericht);
+                            }
+                            
+                        }
+                      })
+                    .catch(function (error) { console.log(error); });
+}
+
+function fnLijstAanvullen(naarId, bericht){
+    var eGesprek = document.getElementById('gesprek');
                             var nieuwstebericht = document.createElement('div');
                             nieuwstebericht.classList.add("bericht");
                             nieuwstebericht.classList.add("verzondenbericht");
@@ -203,9 +261,6 @@ function fnNieuwBericht (partnerProfiel){
 
                             //bericht leegmaken
                             document.getElementById('input' + naarId).value = "";
-                        }
-                      })
-                    .catch(function (error) { console.log(error); });
 }
 
 function fnBerichtenLijst(msgs, partnerProfiel, userId){
