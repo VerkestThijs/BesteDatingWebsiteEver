@@ -67,7 +67,7 @@ function fnLogin() {
                 //volgende window openen. vervang 'test' door correcte url
                 window.open("zoeken.html" , "_self");
             }
-            else if (data.message == "Unauthorized" && keren == false){
+            else if (keren == false){
                 var waarschuwing = document.createElement('p');
                 waarschuwing.textContent = "nickname of wachtwoord is niet correct";
                 document.getElementById('frmLogin').appendChild(waarschuwing);
