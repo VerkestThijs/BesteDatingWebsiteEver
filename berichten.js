@@ -28,12 +28,15 @@ window.onload = function () {
             chatPartners = extractChatPartners(chatMessages, userId);            
         }
     })
+    .then( function(){
+        if (sessionStorage.nieuwId  != null){
+            fnNieuwePartner();
+        }
+    })
     .catch(function (error) { console.log(error); });
 
     //nieuwbericht
-    if (sessionStorage.nieuwId  != null){
-        fnNieuwePartner();
-    } 
+     
 }
 function extractChatPartners(messages, userId) {
     let partners = [];
@@ -70,17 +73,15 @@ function addChatPartner(partner, userId, bericht = "") {
             var eBerichttekst = document.createElement('p');
 
             var eNieuwbericht = document.createElement('input');
-            eNieuwbericht.id = partner;
+            eNieuwbericht.id = 'input' + partner;
             eNieuwbericht.className = "berichttextbox";
 
             var eNieuwberichtBtn = document.createElement('button');
 
-            eNieuwberichtBtn.id = partner;
+            eNieuwberichtBtn.id = 'btn'  +  partner;
             eNieuwberichtBtn.type = "button";
             eNieuwberichtBtn.textContent = "verzenden";
             eNieuwberichtBtn.className = "berichtbutton";
-
-            console.log(eNieuwberichtBtn);
 
             eBerichttekst.innerHTML = bericht;
 
@@ -105,7 +106,7 @@ function addChatPartner(partner, userId, bericht = "") {
                 fnNieuwBericht(partnerProfiel);
             });
             
-            document.getElementById(partner).addEventListener('keyup', function(event){
+            document.getElementById('input' + partner).addEventListener('keyup', function(event){
                 if (event.keyCode === 13){
                     fnNieuwBericht(partnerProfiel);
                 }
@@ -146,14 +147,16 @@ function addChatPartner(partner, userId, bericht = "") {
 //nieuwbericht
 function fnNieuwePartner(){
     addChatPartner(sessionStorage.nieuwId, sessionStorage.id);
-    sessionStorage.removeItem('partnerId');
+    //console.log(document.getElementById('input' + sessionStorage.nieuwId));
+    //document.getElementById('input' + sessionStorage.nieuwId).focus();
+    sessionStorage.removeItem('nieuwId');
 }
 
 function fnNieuwBericht (partnerProfiel){
 
     let vanId =  sessionStorage.id; 
     let naarId = partnerProfiel.id;
-    let bericht = document.getElementById(naarId).value; 
+    let bericht = document.getElementById('input' + naarId).value; 
 
                 let url=rooturl+'/bericht/post.php';
                 //LET OP : rooturl = https://scrumserver.tenobe.org/scrum/api
@@ -163,8 +166,6 @@ function fnNieuwBericht (partnerProfiel){
                     bericht:bericht,
                     status:"verzonden"
                 }
-
-                console.log(data);
 
                 var request = new Request(url, {
                     method: 'POST',
@@ -177,7 +178,6 @@ function fnNieuwBericht (partnerProfiel){
                 fetch(request)
                     .then( function (resp)  { return resp.json(); })
                     .then( function (data)  { 
-                        console.log(data);
                         if (data.message = "Bericht werd aangemaakt."){
                             var eGesprek = document.getElementById('gesprek');
                             var nieuwstebericht = document.createElement('div');
@@ -197,14 +197,15 @@ function fnNieuwBericht (partnerProfiel){
                             nieuwstebericht.appendChild(eBoodschap);
 
                             eGesprek.append(nieuwstebericht);
+
+                            var partner = document.getElementById('partner' + naarId);
+                            partner.getElementsByClassName('boodschap')[0].textContent = bericht;
+
+                            //bericht leegmaken
+                            document.getElementById('input' + naarId).value = "";
                         }
                       })
                     .catch(function (error) { console.log(error); });
-
-        //bericht leegmaken
-        document.getElementById(naarId).value = "";
-
-
 }
 
 function fnBerichtenLijst(msgs, partnerProfiel, userId){
